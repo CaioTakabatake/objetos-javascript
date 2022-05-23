@@ -28,6 +28,10 @@ const clientes = [
     }
 ]
 
-const listaDependentes = [...clientes[0].dependentes, ...clientes[1].dependentes];
+const listaDependentes = [];
+
+clientes.forEach(e => {
+    listaDependentes.push(...e.dependentes);
+});
 
 console.table(listaDependentes);
