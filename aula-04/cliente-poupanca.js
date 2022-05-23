@@ -1,27 +1,39 @@
-function Cliente(nome, cpf, email, saldo) {
-    this.nome = nome;
-    this.cpf = cpf;
-    this.email = email;
-    this.saldo = saldo;
-    this.depositar = function (valor) {
+class Cliente {
+    nome;
+    cpf;
+    email;
+    saldo = 0;
+
+    constructor(nome, cpf, email, saldo) {
+        this.nome = nome;
+        this.cpf = cpf;
+        this.email = email;
+        this.saldo = saldo;
+    }
+
+    depositar = (valor) => {
         this.saldo += valor;
     }
 }
 
+
 const andre = new Cliente('Andre', '3252135346', 'caio@email.com', 100);
 
-function ClientePoupanca(nome, cpf, email, saldo, saldoPoup) {
-    Cliente.call(this, nome, cpf, email, saldo);
-    this.saldoPoup = saldoPoup;
+class ClientePoupanca extends Cliente {
+    constructor(nome, cpf, email, saldo, saldoPoup) {
+        super(nome, cpf, email, saldo);
+        this.saldoPoup = saldoPoup;
+    }
+    
+    depositarPoup(valor) {
+        this.saldoPoup += valor;
+    }
 }
 
 const caio = new ClientePoupanca('Caio', '3252135346', 'caio@email.com', 100, 200);
 
 console.log(caio);
 
-ClientePoupanca.prototype.depositarPoup = function(valor) {
-    this.saldoPoup += valor;
-}
 
 caio.depositarPoup(30);
 
